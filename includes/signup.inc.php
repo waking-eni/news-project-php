@@ -7,14 +7,13 @@ if(isset($_POST['signup-submit'])) {
 	require 'dbh.inc.php';
 	
 	/* fetch information from the form 
-	name of input field in signup.php is called uid, etc
-	use escape string to prevent sql injection*/
-	$username = mysqli_real_escape_string($con, $_POST['uid']);
-	$email = mysqli_real_escape_string($con, $_POST['mail']);
-	$password = mysqli_real_escape_string($con, $_POST['pwd']);
-	$passwordRepeat = mysqli_real_escape_string($con, $_POST['pwd-repeat']);
+	name of input field in signup.php is called uid, etc*/
+	$username = mysqli_real_escape_string($conn, $_POST['uid']);
+	$email = mysqli_real_escape_string($conn, $_POST['mail']);
+	$password = mysqli_real_escape_string($conn, $_POST['pwd']);
+	$passwordRepeat = mysqli_real_escape_string($conn, $_POST['pwd-repeat']);
 	
-	/* basic error handlers */
+	/*error handlers */
 	
 	/* did the user leave one of the fields empty*/
 	If(empty($username) || empty($email) || empty($password) || empty($passwordRepeat) ) {
@@ -48,7 +47,7 @@ if(isset($_POST['signup-submit'])) {
 	/* does the chosen username already exist*/
 	else {
 		
-		$sql = "SELECT uidUsers FROM users WHERE uidUsers=?";
+		$sql = "SELECT id FROM user WHERE id=?";
 		$stmt = mysqli_stmt_init($conn);
 		/* did our mysqli statement fail */
 		if(!mysqli_stmt_prepare($stmt, $sql)) {
@@ -71,7 +70,7 @@ if(isset($_POST['signup-submit'])) {
 			else {
 				/* ubacujemo podatke o novom useru u bazu 
 				? is a placeholder, which is a safer way of dealing with data*/
-				$sql = "INSERT INTO users (uidUsers, emailUsers, pwdUsers) VALUES (?, ?, ?)";
+				$sql = "INSERT INTO user (uidUsers, emailUsers, pwdUsers) VALUES (?, ?, ?)";
 				$stmt = mysqli_stmt_init($conn);
 				if(!mysqli_stmt_prepare($stmt, $sql)) {
 					header("Location: ../signup.php?error=sqlerror");
