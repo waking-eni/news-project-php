@@ -7,11 +7,12 @@ if(isset($_POST['signup-submit'])) {
 	require 'dbh.inc.php';
 	
 	/* fetch information from the form 
-	name of input field in signup.php is called uid, etc*/
-	$username = $_POST['uid'];
-	$email = $_POST['mail'];
-	$password = $_POST['pwd'];
-	$passwordRepeat = $_POST['pwd-repeat'];
+	name of input field in signup.php is called uid, etc
+	use escape string to prevent sql injection*/
+	$username = mysqli_real_escape_string($con, $_POST['uid']);
+	$email = mysqli_real_escape_string($con, $_POST['mail']);
+	$password = mysqli_real_escape_string($con, $_POST['pwd']);
+	$passwordRepeat = mysqli_real_escape_string($con, $_POST['pwd-repeat']);
 	
 	/* basic error handlers */
 	
@@ -87,6 +88,7 @@ if(isset($_POST['signup-submit'])) {
 					mysqli_stmt_bind_param($stmt, "sss", $username, $email, $hashedPwd);
 					mysqli_stmt_execute($stmt);
 					/* the user has now succesfully signed up */
+					//the user will be sent to something different later
 					header("Location: ../signup.php?signup=success");
 					exit();
 				}
