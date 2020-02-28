@@ -7,7 +7,7 @@ function connect_to_db() {
 	$servername="localhost";
 	$dBUsername="root";
 	$dBPassword="";
-	$dBName="loginsystemtut";
+	$dBName="news-assignment";
 
 	$conn = mysqli_connect($servername, $dBUsername, $dBPassword, $dBName);
 	 /* checking if the connection was succesfull */
