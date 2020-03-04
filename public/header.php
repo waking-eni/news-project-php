@@ -1,6 +1,6 @@
 
     <nav class="navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Nowena</a>
+        <a class="navbar-brand" href="index.php">Nowena</a>
 
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">
@@ -10,10 +10,10 @@
                     </a>
                     <!--in drop down Join Us-->
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Sign in as User</a>
-                        <a class="dropdown-item" href="#">Sign in as Administrator</a>
+                        <a class="dropdown-item" href="loginuser.php">Sign in as User</a>
+                        <a class="dropdown-item" href="loginadministrator.php">Sign in as Administrator</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Sign Up</a>
+                        <a class="dropdown-item" href="signup.php">Sign Up</a>
                     </div>
                 </li>
             </ul>
