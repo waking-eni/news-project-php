@@ -35,3 +35,13 @@
             <h2 class="display-4 text-center">Nowena News</h2>
         </div>
     </div>
+
+    <script>
+        //navbar brand animation
+        document.getElementsByClassName("navbar-brand")[0].addEventListener('mouseover', function(){
+            document.getElementsByClassName("navbar-brand")[0].classList.add('flip-brand');
+            window.setTimeout(function(){
+                document.getElementsByClassName("navbar-brand")[0].classList.remove('flip-brand')
+            }, 500);
+        });
+    </script>
