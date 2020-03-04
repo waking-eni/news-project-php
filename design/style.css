@@ -35,6 +35,11 @@ body
     margin: 0 auto;
     width: 20%;
 }
+/*flip navbar brand*/
+.flip-brand
+{
+    transform: scale(-1, 1);
+}
 /*hide scrollbar*/
 ::-webkit-scrollbar {
     display: none;
