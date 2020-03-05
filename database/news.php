@@ -1,7 +1,9 @@
 <?php
 
 require_once __DIR__.'/../includes/dbh.inc.php';
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 function getNewsId($id) {
     $conn = $_SESSION['conn'];
@@ -19,7 +21,8 @@ function getNewsId($id) {
         return $result;
     }
     else {
-        header("Location: ../public/index.php?error=sqlerror");
+        //header("Location: ../public/index.php?error=sqlerror");
+        return null;
         exit();
     }
 }
@@ -28,20 +31,22 @@ function fetchNews() {
     //pregled svih vesti na prvoj strani sa kratkim opisima
     $conn = $_SESSION['conn'];
     $sql = "SELECT id, title, administrator_id, date_added, short_description FROM news ORDER BY date_added DESC ;";
-    $stmt = mysqli_stmt_init($this->conn);
+    $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sql)) {
-        header("Location: ../public/index.php?error=sqlerror");
+        //header("Location: ../public/index.php?error=sqlerror");
         exit();
     } else {
-        mysqli_stmt_bind_param($stmt, "s", $id);
+        //mysqli_stmt_bind_param($stmt);
         mysqli_stmt_execute($stmt);
     }
     $result = mysqli_stmt_get_result($stmt);
     if($row = mysqli_fetch_assoc($result)) {
         return $result;
+        exit();
     }
     else {
-        header("Location: ../public/index.php?error=sqlerror");
+        //header("Location: ../public/index.php?error=sqlerror");
+        return null;
         exit();
     }
 }
@@ -62,7 +67,8 @@ function getArticle($id) {
         return $result;
     }
     else {
-        header("Location: ../public/index.php?error=sqlerror");
+        //header("Location: ../public/index.php?error=sqlerror");
+        return null;
         exit();
     }
 }
@@ -83,14 +89,15 @@ function getAnotherArticle() {
         return $result;
     }
     else {
-        header("Location: ../public/index.php?error=sqlerror");
+        //header("Location: ../public/index.php?error=sqlerror");
+        return null;
         exit();
     }
 }
 
 function getAuthor($id) {
     $conn = $_SESSION['conn'];
-    $sql = "SELECT administrator_id FROM news WHERE id = ? ;";
+    $sql = "SELECT name, surname FROM administrator WHERE id = ? ;";
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sql)) {
         header("Location: ../public/index.php?error=sqlerror");
@@ -101,10 +108,12 @@ function getAuthor($id) {
     }
     $result = mysqli_stmt_get_result($stmt);
     if($row = mysqli_fetch_assoc($result)) {
-        return $result;
+        $result2 = $row['name']." ".$row['surname'];
+        return $result2;
     }
     else {
-        header("Location: ../public/index.php?error=sqlerror");
+        //header("Location: ../public/index.php?error=sqlerror");
+        return null;
         exit();
     }
 }
@@ -125,7 +134,8 @@ Function getNewsByCategory($category) {
         return $result;
     }
     else {
-        header("Location: ../public/index.php?error=sqlerror");
+        //header("Location: ../public/index.php?error=sqlerror");
+        return null;
         exit();
     }
 }
