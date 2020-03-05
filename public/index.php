@@ -1,3 +1,7 @@
+<?php
+   include_once __DIR__.'/../database/news.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,7 +42,26 @@
             <main class="col-9 main">
 
                 <div class="car main-card">
-                    <p>hjhhhj</p>
+                    <?php
+                        //function from database/news.php
+                        $news = fetchNews();
+
+                        if ( $news && !empty($news) ) {
+
+                            foreach ($news as $key => $article) {
+                            echo '<div class="card">';
+                                echo '<div class="card-body">';
+                                echo '<h2 class="card-header"><a class="green-link" href="read-news.php?id='.$article['id'].'&title='.stripslashes($article['title']).'">'.stripslashes($article['title']).'</a></h2>';
+                                echo '<p class="card-text mt-1">'.stripslashes($article['short_description']).'</p>';
+                                echo '<span>published on '.$article['date_added'].', by '.stripslashes(getAuthor($article['administrator_id'])).'</span>';
+                                echo '</div>';
+                            echo '</div>';
+                        }
+    
+                        } else {
+                            echo '<p>Wrong article</p';
+                        }
+                    ?>
                 </div>
 
             </main>
