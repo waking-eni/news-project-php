@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+	session_start();
+}
 
 /*first we check if the user had clicked the submit button
 button in signup.php in the form that is referencing this page is called signup-submit
@@ -49,7 +51,7 @@ if(isset($_POST['signup-submit'])) {
 	/* does the chosen username already exist*/
 	else {
 		
-		$sql = "SELECT id FROM user WHERE id = ? ;";
+		$sql = "SELECT username FROM user WHERE username = ? ;";
 		$stmt = mysqli_stmt_init($conn);
 		/* did this mysqli statement fail 
 		meaning, does it make sense, is the syntax correct, etc */
