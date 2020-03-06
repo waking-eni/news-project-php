@@ -86,6 +86,15 @@ function validate() {
 }
 
 </script>
-    
+
+<?php
+    //does the username already exist
+    $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+    if(strpos($actual_link, 'usertaken')) {
+        echo '<script>document.getElementById("userName").innerHTML = "Username already exists";</script>';
+    }
+
+?>
+
 </body>
 </html>
