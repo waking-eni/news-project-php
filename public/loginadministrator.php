@@ -40,9 +40,11 @@
             <h1 class="text-center mt-5">Log In Administrator</h1>
             <!-- Action points to a spesific page where we'll have only php code
             things will be checked there and, if everythings ok, user will be logged in-->
-            <form class="center-div" action="../includes/loginadministrator.inc.php" method="post">
-		        <input type="text" name="mailuid" placeholder="E-mail/Username">
+            <form class="center-div" name="loginForm" action="../includes/loginadministrator.inc.php" method="post" onsubmit="return(validate());">
+                <input type="text" name="mailuid" placeholder="E-mail/Username">
+                <p id="adminMailName"></p>
                 <input class="d-block my-3" type="password" name="pwd" placeholder="Password">
+                <p id="adminPwd"></p>
                 <button class="d-block my-3 btn btn-dark float-right" type="submit" name="login-submit">Log In</button>
             </form>
 
@@ -51,6 +53,25 @@
         </div>
     </div>
     <!--end f wrapper-->
+
+    <script>
+//client side validation
+
+function validate() {
+    
+    if(document.forms["loginForm"]["mailuid"].value == "") {
+        document.getElementById("adminMailName").innerHTML = "Please provide your E-mail/Username";
+        document.forms["loginForm"]["mailuid"].focus();
+        return false;
+    }
+    if(document.forms["loginForm"]["pwd"].value == "") {
+        document.getElementById("adminPwd").innerHTML = "Please provide your password";
+        document.forms["loginForm"]["pwd"].focus();
+        return false;
+    }
+}
+
+</script>
     
 </body>
 </html>
