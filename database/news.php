@@ -120,7 +120,7 @@ function getAuthor($id) {
 
 Function getNewsByCategory($category) {
     $conn = $_SESSION['conn'];
-    $sql = "SELECT id FROM news WHERE category = ? ;";
+    $sql = "SELECT title, date_added, short_description, administrator_id FROM news WHERE category = ? ;";
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sql)) {
         header("Location: ../public/index.php?error=sqlerror");
@@ -132,6 +132,29 @@ Function getNewsByCategory($category) {
     $result = mysqli_stmt_get_result($stmt);
     if($row = mysqli_fetch_assoc($result)) {
         return $result;
+    }
+    else {
+        //header("Location: ../public/index.php?error=sqlerror");
+        return null;
+        exit();
+    }
+}
+
+function getAllCategories() {
+    $conn = $_SESSION['conn'];
+    $sql = "SELECT category FROM news ;";
+    $stmt = mysqli_stmt_init($conn);
+    if(!mysqli_stmt_prepare($stmt, $sql)) {
+        //header("Location: ../public/index.php?error=sqlerror");
+        exit();
+    } else {
+        //mysqli_stmt_bind_param($stmt);
+        mysqli_stmt_execute($stmt);
+    }
+    $result = mysqli_stmt_get_result($stmt);
+    if($row = mysqli_fetch_assoc($result)) {
+        return $result;
+        exit();
     }
     else {
         //header("Location: ../public/index.php?error=sqlerror");
