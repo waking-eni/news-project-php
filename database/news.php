@@ -18,7 +18,7 @@ function getNewsId($id) {
     }
     $result = mysqli_stmt_get_result($stmt);
     if($row = mysqli_fetch_assoc($result)) {
-        return $result;
+        return mysqli_fetch_assoc($result);
     }
     else {
         //header("Location: ../public/index.php?error=sqlerror");
@@ -53,7 +53,7 @@ function fetchNews() {
 
 function getArticle($id) {
     $conn = $_SESSION['conn'];
-    $sql = "SELECT id, title, category, administrator_id, date_added, short_description, content FROM news WHERE id = ? ;";
+    $sql = "SELECT title, category, administrator_id, date_added, short_description, content FROM news WHERE id = ? ;";
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sql)) {
         header("Location: ../public/index.php?error=sqlerror");
@@ -64,7 +64,8 @@ function getArticle($id) {
     }
     $result = mysqli_stmt_get_result($stmt);
     if($row = mysqli_fetch_assoc($result)) {
-        return $result;
+        return mysqli_fetch_assoc($result);
+        exit();
     }
     else {
         //header("Location: ../public/index.php?error=sqlerror");
@@ -86,7 +87,7 @@ function getAnotherArticle() {
     }
     $result = mysqli_stmt_get_result($stmt);
     if($row = mysqli_fetch_assoc($result)) {
-        return $result;
+        return mysqli_fetch_assoc($result);
     }
     else {
         //header("Location: ../public/index.php?error=sqlerror");
