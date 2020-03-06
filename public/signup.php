@@ -40,11 +40,15 @@
             <h1 class="text-center mt-5">Sign up</h1>
             <!-- Action points to a spesific page where we'll have only php code
             things will be checked there and, if everythings ok, user will be logged in-->
-            <form class="center-div" action="../includes/signup.inc.php" method="post">
+            <form class="center-div" name="loginForm" action="../includes/signup.inc.php" method="post"onsubmit="return(validate());">
                 <input class="d-block my-3" type="text" name="uid" placeholder="Username">
+                <p id="userName"></p>
                 <input class="d-block my-3" type="text" name="mail" placeholder="E-mail">
+                <p id="userMail"></p>
                 <input class="d-block my-3" type="password" name="pwd" placeholder="Password">
+                <p id="userPwdd"></p>
                 <input class="d-block my-3" type="password" name="pwd-repeat" placeholder="Repeat password">
+                <p id="userPwddRep"></p>
                 <button class="d-block my-3 btn btn-dark float-right" type="submit" name="signup-submit">Sign Up</button>
             </form>
 
@@ -53,6 +57,35 @@
         </div>
     </div>
     <!--end f wrapper-->
+
+    <script>
+//client side validation
+
+function validate() {
+    
+    if(document.forms["loginForm"]["uid"].value == "") {
+        document.getElementById("userName").innerHTML = "Please provide your Username";
+        document.forms["loginForm"]["uid"].focus();
+        return false;
+    }
+    if(document.forms["loginForm"]["mail"].value == "") {
+        document.getElementById("userMail").innerHTML = "Please provide your E-mail";
+        document.forms["loginForm"]["mail"].focus();
+        return false;
+    }
+    if(document.forms["loginForm"]["pwd"].value == "") {
+        document.getElementById("userPwdd").innerHTML = "Please provide your Password";
+        document.forms["loginForm"]["pwd"].focus();
+        return false;
+    }
+    if(document.forms["loginForm"]["pwd-repeat"].value == "") {
+        document.getElementById("userPwddRep").innerHTML = "Please repeat your Password";
+        document.forms["loginForm"]["pwd-repeat"].focus();
+        return false;
+    }
+}
+
+</script>
     
 </body>
 </html>
