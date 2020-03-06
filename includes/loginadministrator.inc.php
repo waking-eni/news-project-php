@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+	session_start();
+}
 
 if(isset($_POST['login-submit'])) {
     require_once __DIR__.'/dbh.inc.php';
@@ -13,7 +15,7 @@ if(isset($_POST['login-submit'])) {
 		exit();
 	}
 	else {
-		$sql = "SELECT * FROM administrator WHERE id=? OR email=? ;";
+		$sql = "SELECT * FROM administrator WHERE username=? OR email=? ;";
 		$stmt = mysqli_stmt_init($conn);
 		if(!mysqli_stmt_prepare($stmt, $sql)) {
 			header("Location: ../public/loginadministrator.php?error=sqlerror");
@@ -38,8 +40,8 @@ if(isset($_POST['login-submit'])) {
 				else if($pwdCheck == true) {
 					/*to log in a user we need to start a session,because for log in system to work we create a global variable
 					that has information of the user when he's logged in, and then inside the website we check is the global variable available*/
-					session_start();
-					$_SESSION['administratorid'] = $row['id'];
+					$_SESSION['administratorId'] = $row['id'];
+					$_SESSION['administratorUsername'] = $row['username'];
 					
 					header("Location: ../public/index.php?login=succes");
 					exit();
@@ -61,4 +63,5 @@ if(isset($_POST['login-submit'])) {
 else {
 	header("Location: ../public/loginadministrator.php");
 	exit();
+}
 }
