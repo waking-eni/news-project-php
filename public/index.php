@@ -59,7 +59,7 @@
                         }
     
                         } else {
-                            echo '<p>Wrong article</p';
+                            echo '<p>Wrong article</p>';
                         }
                     ?>
                 </div>
