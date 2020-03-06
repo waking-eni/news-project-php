@@ -1,5 +1,5 @@
 
-    <?php
+<?php
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -15,11 +15,20 @@ if (session_status() == PHP_SESSION_NONE) {
                     </a>
                     <!--in drop down Join Us-->
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="loginuser.php">Log in as User</a>
-                        <a class="dropdown-item" href="loginadministrator.php">Log in as Administrator</a>
-                        <a class="dropdown-item" href="../includes/logout.inc.php">Log out</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="signup.php">Sign Up</a>
+                        
+                        <?php
+
+                            if(isset($_SESSION['userUsername']) || isset($_SESSION['administratorUsername'])) {
+                                echo '<a class="dropdown-item" href="../includes/logout.inc.php">Log out</a>';
+                            } else {
+                                echo '<a class="dropdown-item" href="loginuser.php">Log in as User</a>';
+                                echo '<a class="dropdown-item" href="loginadministrator.php">Log in as Administrator</a>';
+                                echo '<div class="dropdown-divider"></div>';
+                                echo '<a class="dropdown-item" href="signup.php">Sign Up</a>';
+                            }
+
+                        ?>
+
                     </div>
                 </li>
             </ul>
