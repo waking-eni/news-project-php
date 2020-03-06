@@ -41,7 +41,7 @@
             <!--main-->
             <main class="col-9 main">
 
-                <div class="car main-card">
+                <div class="main-card">
                     <?php
                         //function from database/news.php
                         $news = fetchNews();
