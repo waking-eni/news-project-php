@@ -1,7 +1,7 @@
 # news-project-php
 School project\
 A news website, still in development\
-PHP (procedural), HTML, JavaScript, CSS, Bootstrap, MySQL
+PHP (procedural), HTML, JavaScript, CSS, Bootstrap, MySQL, WampServer
 ***
 #### Functionalities I've implemented so far:
 * Displaying a list of news (with desired information), ordered by date descending, on home page
