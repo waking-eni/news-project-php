@@ -1,4 +1,9 @@
 
+    <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+?>
     <nav class="navbar navbar-expand navbar-dark bg-dark">
         <a class="navbar-brand" href="index.php">Nowena</a>
 
@@ -10,8 +15,9 @@
                     </a>
                     <!--in drop down Join Us-->
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="loginuser.php">Sign in as User</a>
-                        <a class="dropdown-item" href="loginadministrator.php">Sign in as Administrator</a>
+                        <a class="dropdown-item" href="loginuser.php">Log in as User</a>
+                        <a class="dropdown-item" href="loginadministrator.php">Log in as Administrator</a>
+                        <a class="dropdown-item" href="../includes/logout.inc.php">Log out</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="signup.php">Sign Up</a>
                     </div>
@@ -24,9 +30,21 @@
             </form>
 
             <ul class="navbar-nav  ml-auto">
-                <li class="nav-item active">
-                    Name Surname
-                </li>
+                
+                    <?php
+
+                        if(isset($_SESSION['userUsername'])) {
+                            $userUsername = $_SESSION['userUsername'];
+                            echo '<li class="nav-item active white-font">'.$userUsername.'</li>';
+                        } else if(isset($_SESSION['administratorUsername'])) {
+                            $administratorUsername = $_SESSION['administratorUsername'];
+                            echo '<li class="nav-item active white-font">'.$administratorUsername.'</li>';
+                        } else {
+                            echo '<li class="nav-item active white-font"></li>';
+                        }
+
+                    ?>
+                
             </ul>  
     </nav>
 
