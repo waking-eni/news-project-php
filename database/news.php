@@ -74,7 +74,7 @@ function getArticle($id) {
     }
 }
 
-function getAnotherArticle() {
+function getAnotherArticle($id) {
     $conn = $_SESSION['conn'];
     $sql = "SELECT id, title, category, administrator_id, date_added, short_description, content FROM news WHERE id != ? ;";
     $stmt = mysqli_stmt_init($conn);
