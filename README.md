@@ -15,8 +15,10 @@ PHP (procedural), HTML, JavaScript, CSS, Bootstrap, SQL (using MySQL)
 * Session
 * Showing username of the person who logged in on each page
 * Showing sign in options only when there is no person logged in
-* If a person is logged in, show log out option\
-I've also created the database and tables, and worked on design.\
+* If a person is logged in, show log out option
+
+
+I've also created the database and tables, and worked on design.
 #### Functionalities I need to implemet:
 * Pagination system
 * Displaying a chosen article (halfway there)
