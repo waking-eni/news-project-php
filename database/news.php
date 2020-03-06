@@ -21,7 +21,6 @@ function getNewsId($id) {
         return mysqli_fetch_assoc($result);
     }
     else {
-        //header("Location: ../public/index.php?error=sqlerror");
         return null;
         exit();
     }
@@ -33,10 +32,8 @@ function fetchNews() {
     $sql = "SELECT id, title, administrator_id, date_added, short_description FROM news ORDER BY date_added DESC ;";
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sql)) {
-        //header("Location: ../public/index.php?error=sqlerror");
         exit();
     } else {
-        //mysqli_stmt_bind_param($stmt);
         mysqli_stmt_execute($stmt);
     }
     $result = mysqli_stmt_get_result($stmt);
@@ -45,7 +42,6 @@ function fetchNews() {
         exit();
     }
     else {
-        //header("Location: ../public/index.php?error=sqlerror");
         return null;
         exit();
     }
@@ -68,7 +64,6 @@ function getArticle($id) {
         exit();
     }
     else {
-        //header("Location: ../public/index.php?error=sqlerror");
         return null;
         exit();
     }
@@ -90,7 +85,6 @@ function getAnotherArticle($id) {
         return mysqli_fetch_assoc($result);
     }
     else {
-        //header("Location: ../public/index.php?error=sqlerror");
         return null;
         exit();
     }
@@ -113,7 +107,6 @@ function getAuthor($id) {
         return $result2;
     }
     else {
-        //header("Location: ../public/index.php?error=sqlerror");
         return null;
         exit();
     }
@@ -135,7 +128,6 @@ Function getNewsByCategory($category) {
         return $result;
     }
     else {
-        //header("Location: ../public/index.php?error=sqlerror");
         return null;
         exit();
     }
@@ -146,10 +138,8 @@ function getAllCategories() {
     $sql = "SELECT category FROM news ;";
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sql)) {
-        //header("Location: ../public/index.php?error=sqlerror");
         exit();
     } else {
-        //mysqli_stmt_bind_param($stmt);
         mysqli_stmt_execute($stmt);
     }
     $result = mysqli_stmt_get_result($stmt);
@@ -158,7 +148,26 @@ function getAllCategories() {
         exit();
     }
     else {
-        //header("Location: ../public/index.php?error=sqlerror");
+        return null;
+        exit();
+    }
+}
+
+function getNumberOfArticles() {
+    $conn = $_SESSION['conn'];
+    $sql = "SELECT COUNT(*) FROM news ;";
+    $stmt = mysqli_stmt_init($conn);
+    if(!mysqli_stmt_prepare($stmt, $sql)) {
+        exit();
+    } else {
+        mysqli_stmt_execute($stmt);
+    }
+    $result = mysqli_stmt_get_result($stmt);
+    if($row = mysqli_fetch_assoc($result)) {
+        return $result;
+        exit();
+    }
+    else {
         return null;
         exit();
     }
