@@ -14,14 +14,18 @@
          foreach($categories as $key => $category) {
 
             echo '<li class="nav-item">';
-                echo '<a class="nav-link active green-link" href="#">'.$category['category'].'</a>';
+                echo '<a class="nav-link active green-link" href="listByCategory.php?category='.$category["category"].'">'
+                .$category['category'].'</a>';
             echo '</li>';
 
          }
+     }
+     else {
+         echo 'Wrong category';
      }
 
      ?>
 
     </ul>
-    
+
 </div>
