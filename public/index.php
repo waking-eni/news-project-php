@@ -51,7 +51,7 @@
                             foreach ($news as $key => $article) {
                             echo '<div class="card">';
                                 echo '<div class="card-body">';
-                                echo '<h2 class="card-header"><a class="green-link" href="read-news.php?id='.$article['id'].'&title='.stripslashes($article['title']).'">'.stripslashes($article['title']).'</a></h2>';
+                                echo '<h2 class="card-header"><a class="green-link" href="readNews.php?id='.$article['id'].'&title='.stripslashes($article['title']).'">'.stripslashes($article['title']).'</a></h2>';
                                 echo '<p class="card-text mt-1">'.stripslashes($article['short_description']).'</p>';
                                 echo '<span>published on '.$article['date_added'].', by '.stripslashes(getAuthor($article['administrator_id'])).'</span>';
                                 echo '</div>';
@@ -68,7 +68,7 @@
             <!--end of main-->
         </div>
     </div>
-    <!--end f wrapper-->
+    <!--end of wrapper-->
 
 </body>
 </html>
