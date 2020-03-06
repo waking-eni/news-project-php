@@ -43,9 +43,9 @@
 
                 <div class="car main-card">
                     <?php
-                        $category = (int)$_GET['category'];
+                        $category = $_GET['category'];
 
-                        if(!empty($category) && $category>0) {
+                        if(!empty($category)) {
                             $articlesByCategory = getNewsByCategory($category);
 
                             foreach($articlesByCategory as $key => $article) {
@@ -69,7 +69,7 @@
             <!--end of main-->
         </div>
     </div>
-    <!--end f wrapper-->
+    <!--end of wrapper-->
 
 </body>
 </html>
