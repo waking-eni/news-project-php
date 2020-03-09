@@ -26,10 +26,10 @@ function getNewsId($id) {
     }
 }
 
-function fetchNews() {
+function fetchNews($offset, $total_records_per_page) {
     //pregled svih vesti na prvoj strani sa kratkim opisima
     $conn = $_SESSION['conn'];
-    $sql = "SELECT id, title, administrator_id, date_added, short_description FROM news ORDER BY date_added DESC ;";
+    $sql = "SELECT id, title, administrator_id, date_added, short_description FROM news ORDER BY date_added DESC LIMIT $offset, $total_records_per_page ;";
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sql)) {
         exit();
@@ -71,7 +71,7 @@ function getArticle($id) {
 
 function getAnotherArticle($id) {
     $conn = $_SESSION['conn'];
-    $sql = "SELECT id, title, category, administrator_id, date_added, short_description, content FROM news WHERE id != ? ;";
+    $sql = "SELECT id, title, category, administrator_id, date_added, short_description, content FROM news WHERE id != ? LIMIT 5;";
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sql)) {
         header("Location: ../public/index.php?error=sqlerror");
@@ -135,7 +135,7 @@ Function getNewsByCategory($category) {
 
 function getAllCategories() {
     $conn = $_SESSION['conn'];
-    $sql = "SELECT category FROM news ;";
+    $sql = "SELECT DISTINCT category FROM news ;";
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sql)) {
         exit();
@@ -155,7 +155,7 @@ function getAllCategories() {
 
 function getNumberOfArticles() {
     $conn = $_SESSION['conn'];
-    $sql = "SELECT COUNT(*) FROM news ;";
+    $sql = "SELECT COUNT(id) as quantity FROM news ;";
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sql)) {
         exit();
@@ -164,6 +164,28 @@ function getNumberOfArticles() {
     }
     $result = mysqli_stmt_get_result($stmt);
     if($row = mysqli_fetch_assoc($result)) {
+        $result = $row['quantity'];
+        return $result;
+        exit();
+    }
+    else {
+        return null;
+        exit();
+    }
+}
+
+function getNumberOfCategories() {
+    $conn = $_SESSION['conn'];
+    $sql = "SELECT COUNT( DISTINCT category ) as quantity FROM news ;";
+    $stmt = mysqli_stmt_init($conn);
+    if(!mysqli_stmt_prepare($stmt, $sql)) {
+        exit();
+    } else {
+        mysqli_stmt_execute($stmt);
+    }
+    $result = mysqli_stmt_get_result($stmt);
+    if($row = mysqli_fetch_assoc($result)) {
+        $result = $row['quantity'];
         return $result;
         exit();
     }
