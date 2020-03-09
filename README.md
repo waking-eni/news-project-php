@@ -22,9 +22,9 @@ PHP (procedural), HTML, JavaScript, CSS, Bootstrap, MySQL, WampServer
 I've also created the database and tables, and worked on design.
 #### Functionalities I need to implemet:
 * Displaying a chosen article (halfway there)
+* Cookies (halway there)
 * Users can add comments to articles; they can also delete their own comments
 * Administrators can add comments to articles; they can delete any comment
 * Administrators can add a new article (as writers)
 * Administrators can delete articles
-* Cookies
 * Fix that scroll
