@@ -23,7 +23,7 @@
     <title>Nowena</title>
     <link rel="stylesheet" href="../design/style.css">
 </head>
-<body>
+<body onload="showModal()">
   
     <!--Navigation bar-->
     <?php
@@ -126,6 +126,11 @@
         </div>
     </div>
     <!--end of wrapper-->
+
+    <!--Cookies-->
+    <?php
+        include_once __DIR__.'/cookies.php';
+    ?>
 
 </body>
 </html>
