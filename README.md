@@ -27,3 +27,4 @@ I've also created the database and tables, and worked on design.
 * Administrators can add a new article (as writers)
 * Administrators can delete articles
 * Cookies
+* Fix that scroll
