@@ -57,7 +57,7 @@
 
                             echo '<div class="image-read-news">';
                             echo '<img src="data:image/jpeg;base64,'.base64_encode( $article['picture'] ).'"/>';
-                            echo '<a class="d-block green-link" href="'.$article["picture_source"].'">'.'Image source</a>';
+                            echo '<a class="d-block green-link" href="'.$article["picture_source"].'" target="_blank">'.'Image source</a>';
                             echo '</div>';
 
                             echo '<hr>';
