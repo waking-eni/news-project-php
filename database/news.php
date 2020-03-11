@@ -5,31 +5,10 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-function getNewsId($id) {
-    $conn = $_SESSION['conn'];
-    $sql = "SELECT id FROM news WHERE id = ? ;";
-    $stmt = mysqli_stmt_init($conn);
-    if(!mysqli_stmt_prepare($stmt, $sql)) {
-        header("Location: ../public/index.php?error=sqlerror");
-        exit();
-    } else {
-        mysqli_stmt_bind_param($stmt, "s", $id);
-        mysqli_stmt_execute($stmt);
-    }
-    $result = mysqli_stmt_get_result($stmt);
-    if($row = mysqli_fetch_assoc($result)) {
-        return mysqli_fetch_assoc($result);
-    }
-    else {
-        return null;
-        exit();
-    }
-}
-
 function fetchNews($offset, $total_records_per_page) {
     //pregled svih vesti na prvoj strani sa kratkim opisima
     $conn = $_SESSION['conn'];
-    $sql = "SELECT id, title, administrator_id, date_added, short_description FROM news ORDER BY date_added DESC LIMIT $offset, $total_records_per_page ;";
+    $sql = "SELECT id, title, administrator_id, date_added, short_description, picture FROM news ORDER BY date_added DESC LIMIT $offset, $total_records_per_page ;";
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sql)) {
         exit();
@@ -49,7 +28,9 @@ function fetchNews($offset, $total_records_per_page) {
 
 function getArticle($id) {
     $conn = $_SESSION['conn'];
-    $sql = "SELECT title, category, administrator_id, date_added, short_description, content FROM news WHERE id = ? ;";
+    $sql = "SELECT title, category, administrator_id, date_added, short_description, 
+    content, picture, picture_source FROM news 
+    WHERE id = ? ;";
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sql)) {
         header("Location: ../public/index.php?error=sqlerror");
@@ -59,35 +40,14 @@ function getArticle($id) {
         mysqli_stmt_execute($stmt);
     }
     $result = mysqli_stmt_get_result($stmt);
-    if($row = mysqli_fetch_assoc($result)) {
+    //if($row = mysqli_fetch_assoc($result)) {
         return mysqli_fetch_assoc($result);
         exit();
-    }
+    /*}
     else {
         return null;
         exit();
-    }
-}
-
-function getAnotherArticle($id) {
-    $conn = $_SESSION['conn'];
-    $sql = "SELECT id, title, category, administrator_id, date_added, short_description, content FROM news WHERE id != ? LIMIT 5;";
-    $stmt = mysqli_stmt_init($conn);
-    if(!mysqli_stmt_prepare($stmt, $sql)) {
-        header("Location: ../public/index.php?error=sqlerror");
-        exit();
-    } else {
-        mysqli_stmt_bind_param($stmt, "s", $id);
-        mysqli_stmt_execute($stmt);
-    }
-    $result = mysqli_stmt_get_result($stmt);
-    if($row = mysqli_fetch_assoc($result)) {
-        return mysqli_fetch_assoc($result);
-    }
-    else {
-        return null;
-        exit();
-    }
+    }*/
 }
 
 function getAuthor($id) {
