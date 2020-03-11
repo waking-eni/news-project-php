@@ -3,6 +3,13 @@ if (session_status() == PHP_SESSION_NONE) {
 	session_start();
 }
 
+//checking SHA-256 password
+function checkPassword($password, $db_password)
+{
+    $hashed = hash('sha256',$password);
+    return ($hashed == $db_password) ? true : false;
+}
+
 if(isset($_POST['login-submit'])) {
     require_once __DIR__.'/dbh.inc.php';
     $conn = $_SESSION['conn'];
@@ -32,7 +39,9 @@ if(isset($_POST['login-submit'])) {
 				/*grab the password from the user if we have a user with this username/email
 				then take that password from the db, and hash the password the user tried to log in with
 				and see if the two match*/
-				$pwdCheck = password_verify($password, $row['password']);
+				/*I used SHA-256 for password encryption in MySQL for administrators*/ 
+				$pwdCheck = checkPassword($password, $row['password']);
+
 				if($pwdCheck == false) {
 					header("Location: ../public/loginadministrator.php?error=wrongpwd");
 					exit();
@@ -63,5 +72,4 @@ if(isset($_POST['login-submit'])) {
 else {
 	header("Location: ../public/loginadministrator.php");
 	exit();
-}
 }
