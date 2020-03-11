@@ -17,11 +17,11 @@ PHP (procedural), HTML, JavaScript, CSS, Bootstrap, MySQL, WampServer
 * Showing sign in options only when there is no person logged in
 * If a person is logged in, show log out option
 * Pagination system
+* Displaying a chosen article
 
 
 I've also created the database and tables, and worked on design.
 #### Functionalities I need to implemet:
-* Displaying a chosen article (halfway there)
 * Cookies (halway there)
 * Users can add comments to articles; they can also delete their own comments
 * Administrators can add comments to articles; they can delete any comment
