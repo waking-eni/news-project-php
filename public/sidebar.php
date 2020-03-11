@@ -2,12 +2,13 @@
    include_once __DIR__.'/../database/news.php';
 ?>
 
-<div class="col sidebar bg-dark mt-0 h-100">
+<div class="col sidebar bg-dark mt-0 pb-0">
      <h3 class="white-font">Category</h3>
 
     <ul class="list-unstyled">
 
     <?php
+
      $categories = getAllCategories();
 
      if($categories && !empty($categories)) {
