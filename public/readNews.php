@@ -55,10 +55,18 @@
                                 echo '</div>';
                             echo '</div>';
 
+                            echo '<div class="image-read-news">';
+                            echo '<img src="data:image/jpeg;base64,'.base64_encode( $article['picture'] ).'"/>';
+                            echo '<a class="d-block green-link" href="'.$article["picture_source"].'">'.'Image source</a>';
+                            echo '</div>';
+
+                            echo '<hr>';
+
                             echo '<div class="article-content">';
                             echo stripslashes($article['content']);
-                                echo '<p>'.stripslashes(getAuthor($article["administrator_id"])).'</p>';
-                                echo '<p>'.$article["date_added"].' '.$article["category"].'</p>';
+                                echo '<hr>';
+                                echo '<p class="font-weight-bold text-right">Written by '.stripslashes(getAuthor($article["administrator_id"])).'</p>';
+                                echo '<p class="font-weight-bold text-right">Published on '.$article["date_added"].', category: '.$article["category"].'</p>';
                             echo '</div>';
 
                         } else {
@@ -67,32 +75,6 @@
                                     echo '<h1 class=display-4">Wrong article</h1>';
                                 echo '</div>';
                             echo '</div>';
-                        }
-
-                        //other articles
-                        $otherArticles = getAnotherArticle($idArticle);
-
-                        if(!empty($otherarticles)) {
-
-                            foreach($otherArticles as $key => $a) {
-
-                                echo '<div class="card">';
-                                    echo '<div class="card-body">';
-                                    echo '<h2 class="card-header"><a class="green-link" href="readNews.php?id='.
-                                    $a['id'].'&title='.stripslashes($a['title']).'">'.stripslashes($a['title']).'</a></h2>';
-                                    echo '<p class="card-text mt-1">'.stripslashes($a['short_description']).'</p>';
-                                    echo '<span>published on '.$a['date_added'].', by '.
-                                    stripslashes(getAuthor($a['administrator_id'])).'</span>';
-                                    echo '</div>';
-                                echo '</div>';
-
-                            }
-                        } else {
-                            echo '<div class="card">';
-                                    echo '<div class="card-body">';
-                                    echo '<h2 class="card-header">Wrong article</h2>';
-                                    echo '</div>';
-                                echo '</div>';
                         }
 
                     ?>
