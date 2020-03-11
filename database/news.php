@@ -74,7 +74,7 @@ function getAuthor($id) {
 
 Function getNewsByCategory($category) {
     $conn = $_SESSION['conn'];
-    $sql = "SELECT id, title, date_added, short_description, administrator_id FROM news WHERE category = ? ;";
+    $sql = "SELECT id, title, date_added, short_description, administrator_id, picture FROM news WHERE category = ? ;";
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sql)) {
         header("Location: ../public/index.php?error=sqlerror");
