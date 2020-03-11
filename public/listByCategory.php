@@ -69,6 +69,8 @@
 
                             foreach($articlesByCategory as $key => $article) {
                                 echo '<div class="card">';
+                                echo '<img class="card-img-top" src="data:image/jpeg;base64,'.base64_encode( $article['picture'] ).
+                                    '" alt="Card image cap" width="193" height="130" style="float:left;width:50%;height:100%;object-fit:cover;"/>';
                                     echo '<div class="card-body">';
                                     echo '<h2 class="card-header"><a class="green-link" href="readNews.php?id='.$article['id'].'&title='.stripslashes($article['title']).'">'.stripslashes($article['title']).'</a></h2>';
                                     echo '<p class="card-text mt-1">'.stripslashes($article['short_description']).'</p>';
