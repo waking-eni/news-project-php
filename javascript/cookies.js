@@ -1,5 +1,10 @@
 var cookie = navigator.cookieEnabled;
 //cookie is true if cookies are enabled
+if(cookie == true) {
+    setCookie("enabled", "true", 0);
+} else {
+    setCookie("enabled", "false", 0);
+}
 
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();
