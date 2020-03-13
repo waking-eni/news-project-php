@@ -31,10 +31,11 @@
     var acceptButton = document.getElementById("acceptButton");
     var declineButton = document.getElementById("declineButton");
     var cookieUser;
+    var checkPage;
 
     function showModal() {
-        
-        if (performance.navigation.type == 1) {
+        cookieUser = getCookie("user");
+        if (performance.navigation.type == 1 || !empty(cookieUser)) {
           modal.style.display = "none";
         } else {
           modal.style.display = "block";
@@ -47,13 +48,12 @@
 
     acceptButton.onclick = function() {
       modal.style.display = "none";
-      cookieUser = setCookie("user", "accept", 0);
-      
+      setCookie("user", "accept", 0);
     }
 
     declineButton.onclick = function() {
       modal.style.display = "none";
-      cookieUser = setCookie("user", "decline", 0);
+      setCookie("user", "decline", 0);
       
     }
 
