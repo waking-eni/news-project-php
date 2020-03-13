@@ -20,7 +20,7 @@ if(isset($_POST['signup-submit'])) {
 	/*error handlers */
 	
 	/* did the user leave one of the fields empty*/
-	If(empty($username) || empty($email) || empty($password) || empty($passwordRepeat) ) {
+	if(empty($username) || empty($email) || empty($password) || empty($passwordRepeat) ) {
 		/* if any are empty, we send the user back to the sign up page and write the message in URL (like a location),
 		but we fill in the fields he filled previously, again
 		they should always repeat the password, because we don't ever want the pass to be seen in the url*/
@@ -111,6 +111,6 @@ if(isset($_POST['signup-submit'])) {
 }
 /* if the user gained acces to this page without clicking the sign up button*/
 else {
-	header("Location: ../signup.php");
+	header("Location: ../public/signup.php");
 	exit();
 }
