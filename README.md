@@ -19,11 +19,12 @@ PHP (procedural), HTML, JavaScript, CSS, Bootstrap, MySQL, WampServer
 * Pagination system
 * Displaying a chosen article (with images and their sources)
 * Cookies
+* Users, administrators and anonymous people can add comments to articles
 
 
 I've also created the database and tables, and worked on design.
 #### Functionalities I need to implemet:
-* Users can add comments to articles; they can also delete their own comments
-* Administrators can add comments to articles; they can delete any comment
+* Users can delete their own comments
+* Administrators can delete any comment
 * Administrators can add a new article (as writers)
 * Administrators can delete articles
