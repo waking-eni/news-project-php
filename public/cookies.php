@@ -1,3 +1,5 @@
+<script src="../javascript/cookies.js"></script>
+
 <!-- The Modal -->
 <div id="myModal" class="modal">
 
@@ -9,11 +11,14 @@
     </div>
     <div class="modal-body">
       <p>This website uses cookies.</p>
-      <p>By continuing to browse the site, you are agreeing to our use of cookies.</p>
+      <p>These cookies are used to collect information about how you interact 
+      with our website and allow us to remember you. If you decline, 
+      your information won’t be tracked when you visit this website. 
+      A single cookie will be used in your browser to remember your preference not to be tracked.</p>
     </div>
     <div class="modal-footer">
-      <input type="button" value="Accept">
-      <input type="button" value="Decline">
+      <button value="Accept" id="acceptButton">Accept</button>
+      <button value="Decline" id="declineButton">Decline</button>
     </div>
   </div>
 
@@ -23,13 +28,33 @@
 
     var modal = document.getElementById("myModal");
     var close = document.getElementsByClassName("close")[0];
+    var acceptButton = document.getElementById("acceptButton");
+    var declineButton = document.getElementById("declineButton");
+    var cookieUser;
 
     function showModal() {
-        modal.style.display = "block";
+        
+        if (performance.navigation.type == 1) {
+          modal.style.display = "none";
+        } else {
+          modal.style.display = "block";
+        }
     }
 
     close.onclick = function() {
     modal.style.display = "none";
+    }
+
+    acceptButton.onclick = function() {
+      modal.style.display = "none";
+      cookieUser = setCookie("user", "accept", 0);
+      
+    }
+
+    declineButton.onclick = function() {
+      modal.style.display = "none";
+      cookieUser = setCookie("user", "decline", 0);
+      
     }
 
 </script>
