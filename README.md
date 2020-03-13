@@ -18,11 +18,11 @@ PHP (procedural), HTML, JavaScript, CSS, Bootstrap, MySQL, WampServer
 * If a person is logged in, show log out option
 * Pagination system
 * Displaying a chosen article (with images and their sources)
+* Cookies
 
 
 I've also created the database and tables, and worked on design.
 #### Functionalities I need to implemet:
-* Cookies (halfway there)
 * Users can add comments to articles; they can also delete their own comments
 * Administrators can add comments to articles; they can delete any comment
 * Administrators can add a new article (as writers)
