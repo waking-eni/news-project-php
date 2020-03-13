@@ -1,5 +1,6 @@
 <?php
    include_once __DIR__.'/../database/news.php';
+   include_once __DIR__.'/../database/comments.php';
 ?>
 
 <!DOCTYPE html>
@@ -80,8 +81,51 @@
                     ?>
                 </div>
 
+                <!--Comments-->
+                <hr>
+
+                <form action="../includes/comments.inc.php" method="post" onsubmit="emptyComment()">
+                    <div class="form-group">
+                        <span>Add a comment</span>
+                        <button class="btn btn-dark" type="submit" name="comment">
+                        Comment</button>
+                        <textarea class="form-control" rows="3" name="comment" id="commentArea" placeholder="..."></textarea>
+                        <input type="hidden" name="idArticle" value="<?php echo htmlspecialchars($idArticle); ?>">
+                    </div>
+                </form>
+
+
+                <div class="comment-div">
+                    <?php
+
+                        $comments = fetchComments($idArticle);
+
+                        if($comments && !empty($comments)) {
+                            foreach($comments as $key => $comment) {
+                                echo '<div class="card">';
+                                    echo '<div class="card-body">';
+                                        echo '<h6 class="card-header">'.stripslashes($comment['username']).'</h6>';
+                                        echo '<p class="card-text">'.stripslashes($comment['content']).'</p>';
+                                    echo '</div>';
+                                echo '</div>';
+                            }
+                        } else {
+                            echo '<p>No comments to show</p>';
+                        }
+                    ?>
+                </div>
+
+                <script>
+                    function emptyComment() {
+                        document.getElementById("commentArea").innerText = "";
+                    }
+                </script>
+
+                <!--end of comments-->
+
             </main>
             <!--end of main-->
+
         </div>
     </div>
     <!--end of wrapper-->
